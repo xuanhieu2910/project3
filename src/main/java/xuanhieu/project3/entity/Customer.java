@@ -16,12 +16,12 @@ public class Customer {
     @Column
     private String addressCustomer;
 
-    @OneToMany(
+    @OneToOne(
             mappedBy = "customer",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Orders>orders = new ArrayList<>();
+    private Orders orders;
 
 
     public Customer() {
@@ -66,12 +66,17 @@ public class Customer {
     public void setAddressCustomer(String addressCustomer) {
         this.addressCustomer = addressCustomer;
     }
+//
+//    public List<Orders> getOrders() {
+//        return orders;
+//    }
 
-    public List<Orders> getOrders() {
-        return orders;
-    }
+//
+//    public Orders getOrders() {
+//        return orders;
+//    }
 
-    public void setOrders(List<Orders> orders) {
+    public void setOrders(Orders orders) {
         this.orders = orders;
     }
 }

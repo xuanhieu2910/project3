@@ -16,7 +16,7 @@ public class Orders {
     @Column
     private Float totalPrice;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

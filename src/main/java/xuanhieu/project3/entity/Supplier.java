@@ -22,9 +22,8 @@ public class Supplier {
     )
     private List<Products>productsList = new ArrayList<>();
 
+    public Supplier(){}
 
-    public Supplier() {
-    }
 
     public Supplier(Integer idSupplier, String nameSupplier, String addressSupplier) {
         this.idSupplier = idSupplier;
@@ -56,5 +55,7 @@ public class Supplier {
         this.addressSupplier = addressSupplier;
     }
 
-
+    public void setProductsList(List<Products> productsList) {
+        this.productsList = productsList;
+    }
 }

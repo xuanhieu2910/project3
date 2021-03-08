@@ -1,6 +1,8 @@
 package xuanhieu.project3.entity;
 
+import org.aspectj.apache.bcel.generic.BranchHandle;
 
+import java.util.*;
 import javax.persistence.*;
 
 @Entity
@@ -8,6 +10,7 @@ import javax.persistence.*;
 public class ImportInventory {
 
     @Id
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Integer idImportInventory;
     @Column(name ="quantity",nullable = false)
     private Integer quantity;
@@ -22,31 +25,22 @@ public class ImportInventory {
 
     @OneToOne
     @JoinColumn(name = "id_inventory")
-    private Inventory inventory;
+    private BranchInventory branchInventory;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_products")
     private Products products;
 
 
     public ImportInventory(){}
 
-    public ImportInventory(Integer idImportInventory, Integer quantity,
+    public ImportInventory( Integer quantity,
                            Float priceImport, String dateImport, String status, Integer enable) {
-        this.idImportInventory = idImportInventory;
         this.quantity = quantity;
         this.priceImport = priceImport;
         this.dateImport = dateImport;
         this.status = status;
         this.enable = enable;
-    }
-
-    public Integer getIdImportInventory() {
-        return idImportInventory;
-    }
-
-    public void setIdImportInventory(Integer idImportInventory) {
-        this.idImportInventory = idImportInventory;
     }
 
     public Integer getQuantity() {
@@ -89,19 +83,19 @@ public class ImportInventory {
         this.enable = enable;
     }
 
-    public Inventory getInventory() {
-        return inventory;
+    public BranchInventory getBranchInventory() {
+        return branchInventory;
     }
 
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
-
-    public Products getProducts() {
-        return products;
+    public void setBranchInventory(BranchInventory branchInventory) {
+        this.branchInventory = branchInventory;
     }
 
     public void setProducts(Products products) {
         this.products = products;
+    }
+
+    public Products getProducts() {
+        return products;
     }
 }

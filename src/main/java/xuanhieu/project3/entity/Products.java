@@ -23,6 +23,12 @@ public class Products {
     private String statusProduct;
     @Column(name = "date_import",nullable = false)
     private String dateImport;
+
+    @Column(name = "date_of_manufacture",nullable = false,length = 255)
+    private String dateOfManufacture;
+    @Column(name = "expiration_date",nullable = false,length = 255)
+    private String expirationDate;
+
     @Column(name = "date_delete")
     private String dateDelete;
 
@@ -35,40 +41,39 @@ public class Products {
     )
     private List<OrderDetails>orderDetails = new ArrayList<>();
 
-    @OneToOne(
-            mappedBy ="products",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private Inventory inventory;
 
+    @OneToMany(
+            mappedBy = "products",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL
+    )
+    private List<Inventory>inventories = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "id_supplier")
     private Supplier supplier;
 
-    @OneToOne(
+    @OneToMany(
             mappedBy = "products",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private ImportInventory importInventory;
+    private List<ImportInventory> importInventory;
 
-    @OneToOne(
+    @OneToMany(
             mappedBy = "products_time",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL
     )
-    private EditTimeProduct editTimeProduct;
+    private List<EditTimeProduct> editTimeProduct;
 
     public Products() {
     }
 
-    public Products(Integer idProduct, String nameProduct,
+    public Products( String nameProduct,
                     Float importPrice, Float wholesalePrices,
                     Integer quantity, Float price, String statusProduct,
-                    String dateImport, String dateDelete) {
-        this.idProduct = idProduct;
+                    String dateImport) {
         this.nameProduct = nameProduct;
         this.importPrice = importPrice;
         this.wholesalePrices = wholesalePrices;
@@ -76,7 +81,6 @@ public class Products {
         this.price = price;
         this.statusProduct = statusProduct;
         this.dateImport = dateImport;
-        this.dateDelete = dateDelete;
     }
 
     public Integer getIdProduct() {
@@ -139,8 +143,20 @@ public class Products {
         return dateImport;
     }
 
-    public void setDateImport(String dateImport) {
-        this.dateImport = dateImport;
+    public String getDateOfManufacture() {
+        return dateOfManufacture;
+    }
+
+    public void setDateOfManufacture(String dateOfManufacture) {
+        this.dateOfManufacture = dateOfManufacture;
+    }
+
+    public String getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(String expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public String getDateDelete() {
@@ -159,37 +175,28 @@ public class Products {
         this.supplier = supplier;
     }
 
-    public ImportInventory getImportInventory() {
-        return importInventory;
+    public void setDateImport(String dateImport) {
+        this.dateImport = dateImport;
     }
 
-    public void setImportInventory(ImportInventory importInventory) {
-        this.importInventory = importInventory;
-    }
-
-
-    public EditTimeProduct getEditTimeProduct() {
+    public List<EditTimeProduct> getEditTimeProduct() {
         return editTimeProduct;
     }
 
-    public void setEditTimeProduct(EditTimeProduct editTimeProduct) {
+    public void setEditTimeProduct(List<EditTimeProduct> editTimeProduct) {
         this.editTimeProduct = editTimeProduct;
     }
 
-    public List<OrderDetails> getOrderDetails() {
-        return orderDetails;
-    }
+//    public List<OrderDetails> getOrderDetails() {
+//        return orderDetails;
+//    }
 
     public void setOrderDetails(List<OrderDetails> orderDetails) {
         this.orderDetails = orderDetails;
     }
 
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
+    public void setInventories(List<Inventory> inventories) {
+        this.inventories = inventories;
     }
 
     @Override
@@ -205,5 +212,17 @@ public class Products {
                 ", dateImport='" + dateImport + '\'' +
                 ", dateDelete='" + dateDelete + '\'' +
                 '}';
+    }
+
+    public List<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public List<ImportInventory> getImportInventory() {
+        return importInventory;
+    }
+
+    public void setImportInventory(List<ImportInventory> importInventory) {
+        this.importInventory = importInventory;
     }
 }

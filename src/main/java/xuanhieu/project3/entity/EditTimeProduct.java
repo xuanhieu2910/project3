@@ -7,20 +7,21 @@ import javax.persistence.*;
 public class EditTimeProduct {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idEdit;
     @Column(name = "date_edit",nullable = false)
     private String dateEdit;
     @Column(name = "status",nullable = false)
     private String status;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_product")
     private Products products_time;
 
     public EditTimeProduct() {
     }
 
-    public EditTimeProduct(Integer idEdit, String dateEdit, String status) {
+    public EditTimeProduct(String dateEdit, String status) {
         this.idEdit = idEdit;
         this.dateEdit = dateEdit;
         this.status = status;
@@ -50,9 +51,7 @@ public class EditTimeProduct {
         this.status = status;
     }
 
-    public Products getProducts_time() {
-        return products_time;
-    }
+
 
     public void setProducts_time(Products products_time) {
         this.products_time = products_time;

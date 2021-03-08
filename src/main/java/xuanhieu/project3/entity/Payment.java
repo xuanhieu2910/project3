@@ -65,9 +65,9 @@ public class Payment {
         this.enable = enable;
     }
 
-    public Orders getOrders() {
-        return orders;
-    }
+//    public Orders getOrders() {
+//        return orders;
+//    }
 
     public void setOrders(Orders orders) {
         this.orders = orders;

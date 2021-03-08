@@ -55,9 +55,9 @@ public class OrderDetails {
         this.productsDetails = productsDetails;
     }
 
-    public Orders getOrders() {
-        return orders;
-    }
+//    public Orders getOrders() {
+//        return orders;
+//    }
 
     public void setOrders(Orders orders) {
         this.orders = orders;
