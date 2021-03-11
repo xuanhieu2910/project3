@@ -1,5 +1,4 @@
 package xuanhieu.project3.service;
-
 import xuanhieu.project3.entity.Ship;
 import java.util.*;
 public interface ShipService {

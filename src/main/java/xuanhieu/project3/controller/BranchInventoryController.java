@@ -14,23 +14,23 @@ public class BranchInventoryController {
     @Autowired
     BranchInventoryService branchInventoryService;
 
-    @GetMapping(value = "/branchInventorys")
+    @GetMapping(value = "/branch")
     public List<BranchInventory>getAllInventory(){
         return branchInventoryService.findAllBranchInventory();
     }
 
-    @PostMapping(value = "/saveBranchInventory")
+    @PostMapping(value = "/save-branch")
     public BranchInventory saveBranchInventory(@RequestBody BranchInventory branchInventory){
         return branchInventoryService.saveBranchInventory(branchInventory);
     }
 
 
-    @GetMapping(value = "/branchInventory/{id}")
+    @GetMapping(value = "/branch-inventory/{id}")
     public BranchInventory getBranchInventoryById(@PathVariable("id")Integer id){
         return branchInventoryService.findBranchInventoryById(id);
     }
 
-    @PutMapping(value = "/update-branchInventory/{id}")
+    @PutMapping(value = "/update-branch/{id}")
     public BranchInventory updateBranchInventoryById(@PathVariable("id")Integer id,@RequestBody BranchInventory branchInventory){
         if(branchInventoryService.findBranchInventoryById(id)!=null){
            return  branchInventoryService.updateBranchInventory(branchInventory);

@@ -1,5 +1,4 @@
 package xuanhieu.project3.service.impl;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xuanhieu.project3.dao.ProductsDao;
@@ -7,9 +6,7 @@ import xuanhieu.project3.dao.SupplierDao;
 import xuanhieu.project3.entity.EditTimeProduct;
 import xuanhieu.project3.entity.Products;
 import xuanhieu.project3.entity.Supplier;
-import xuanhieu.project3.service.ProductsService;
 import xuanhieu.project3.service.SupplierService;
-
 import java.util.*;
 
 @Service

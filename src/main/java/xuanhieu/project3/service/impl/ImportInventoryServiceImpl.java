@@ -1,5 +1,4 @@
 package xuanhieu.project3.service.impl;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xuanhieu.project3.dao.ImportInventoryDao;
@@ -11,7 +10,6 @@ import xuanhieu.project3.service.BranchInventoryService;
 import xuanhieu.project3.service.ImportInventoryService;
 import xuanhieu.project3.service.InventoryService;
 import xuanhieu.project3.service.ProductsService;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,11 +18,16 @@ import java.util.List;
 public class ImportInventoryServiceImpl implements ImportInventoryService {
 
     public static Products products;
-    public static Date dateImport;
     public static BranchInventory branchInventory;
-    public static List<ImportInventory>importInventories;
     public static Inventory inventory;
     public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    public static String dateImportProduct;
+    public static String dateExpiryProduct;
+    public static float priceProduct;
+    public static int quantity;
+
+
+
     @Autowired
     ImportInventoryDao importInventoryDao;
 
@@ -45,38 +48,28 @@ public class ImportInventoryServiceImpl implements ImportInventoryService {
     }
 
     @Override
-    public ImportInventory saveSingleProductImportInventory(Integer id,ImportInventory importInventory) {
-//         TH : đã có sản phẩm trong kho
-//         logic : Sản phẩm đã nằm trong kho thì phải có chi nhánh
-//         Yêu cầu: Kiểm tra có sản phẩm đấy ko  + Xem nó nằm trong chi nhanh nào -> cập nhập lại số lượng
-//         Số lượng mới  = số lượng có trong kho hiện tại + số lượng nhập ko
-//
-//         1. Kiểm tra có sản phẩm trong kho?
+    public ImportInventory saveProductImportInventory(ImportInventory importInventory) {
 
-        Date importDate = new Date();
-        String date = simpleDateFormat.format(importDate);
+        if( (productsService.findProductById(importInventory.getProducts().getIdProduct())!=null) &&
+                (branchInventoryService.findBranchInventoryById(importInventory.getBranchInventory().getIdBranchInventory())!=null)){
 
-        if(productsService.findProductById(id)!=null){
-            products = productsService.findProductById(id);
-            importInventories = new ArrayList<>();
-            if(importInventory.getEnable()==1){
-                branchInventory = new BranchInventory();
-                branchInventory.setImportInventory(importInventory);
-                products.setQuantity(importInventory.getQuantity());
-                products.setDateImport(date);
-            }
-            importInventoryDao.saveImportInventory(importInventory);
-            saveProductIntoInventory(products);
-
-            return importInventory;
+            products = productsService.findProductById(importInventory.getProducts().getIdProduct());
+            inventory = new Inventory();
+            dateImportProduct = importInventory.getDateImport();
+            quantity = importInventory.getQuantity();
+            dateExpiryProduct = importInventory.getDateExpiry();
+            inventory.setProducts(products);
+            inventory.setBranchInventory(branchInventoryService.findBranchInventoryById(importInventory.getBranchInventory().getIdBranchInventory()));
+            inventory.setTotalInventory(quantity);
+            inventory.setTotalSales(quantity);
+            inventory.setDateImport(dateImportProduct);
+            inventory.setExpiryDate(dateExpiryProduct);
+            inventory.setStatus("Hàng mới nhập");
+            inventoryService.saveInventory(inventory);
+            importInventory.setProducts(products);
+            return importInventoryDao.saveImportInventory(importInventory);
         }
-        else{
-            return null;
-        }
-    }
-
-    private void saveProductIntoInventory(Products products){
-        productsService.updateProducts(products);
+        return null;
     }
 
     @Override

@@ -20,8 +20,8 @@ public class ImportInventoryController {
        return importInventoryService.findAllImportInventory();
     }
 
-    @PostMapping(value="/import-product/{idProduct}")
-    public ImportInventory importInventorySingleProduct(@PathVariable("idProduct")Integer idProduct,@RequestBody ImportInventory importInventory){
-            return importInventoryService.saveSingleProductImportInventory(idProduct,importInventory);
+    @PostMapping(value="/import-product")
+    public ImportInventory importInventorySingleProduct(@RequestBody ImportInventory importInventory){
+            return importInventoryService.saveProductImportInventory(importInventory);
     }
 }

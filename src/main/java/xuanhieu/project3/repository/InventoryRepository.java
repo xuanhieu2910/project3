@@ -13,4 +13,7 @@ public interface InventoryRepository extends JpaRepository<Inventory,Integer> {
 
 //    Inventory updateInventoryByIdProduct()
 
+    @Query("SELECT iv FROM Inventory iv WHERE iv.products.idProduct=:id")
+    List<Inventory>findInventoriesByIdProduct(@Param("id")Integer id);
+
 }

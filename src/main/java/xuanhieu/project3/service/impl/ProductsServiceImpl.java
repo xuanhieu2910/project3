@@ -1,22 +1,16 @@
 package xuanhieu.project3.service.impl;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 import xuanhieu.project3.dao.ProductsDao;
 import xuanhieu.project3.entity.*;
-import xuanhieu.project3.repository.ProductsRepository;
 import xuanhieu.project3.service.BranchInventoryService;
 import xuanhieu.project3.service.ProductsService;
 import xuanhieu.project3.service.SupplierService;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductsServiceImpl implements ProductsService {
@@ -98,14 +92,15 @@ public class ProductsServiceImpl implements ProductsService {
         Integer root = products.getQuantity();
         for (int i = 0; i < products.getInventories().size(); i++) {
             totalInventory = products.getInventories().get(i).getTotalInventory();
+            System.out.println("TotalInventory:"+totalInventory);
             if(!checkQuantity(totalInventory,root)){
                 totalInventory=root;
             }
+            String status = products.getInventories().get(i).getStatus();
             root-=totalInventory;
-            Inventory inventory = new Inventory(totalInventory, totalInventory, date, products.getExpirationDate());
+            Inventory inventory = new Inventory(totalInventory, totalInventory, date, products.getExpirationDate(),status);
             inventory.setProducts(products);
             inventory.setBranchInventory(products.getInventories().get(i).getBranchInventory());
-            System.out.println("haha");
             //Check chi nhánh nhà kho
             if(!checkBranchInventory(products.getInventories().get(i).getBranchInventory().getIdBranchInventory())){
                 branchInventoryService.saveBranchInventory(products.getInventories().get(i).getBranchInventory());

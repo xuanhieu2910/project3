@@ -1,12 +1,6 @@
 package xuanhieu.project3.service;
-
-import xuanhieu.project3.entity.BranchInventory;
-import xuanhieu.project3.entity.Inventory;
 import xuanhieu.project3.entity.Products;
-import xuanhieu.project3.entity.Supplier;
-
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductsService {
     //lưu

@@ -1,7 +1,5 @@
 package xuanhieu.project3.service;
-
 import xuanhieu.project3.entity.BranchInventory;
-
 import java.util.List;
 
 public interface BranchInventoryService {

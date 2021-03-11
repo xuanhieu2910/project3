@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xuanhieu.project3.dao.CustomerDao;
 import xuanhieu.project3.entity.Customer;
-import xuanhieu.project3.repository.CustomerRepository;
 import xuanhieu.project3.service.CustomerService;
 
 import java.util.List;
-import java.util.Optional;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 

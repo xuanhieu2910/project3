@@ -22,6 +22,9 @@ public class Inventory {
     @Column(name = "expiry_date",length = 255,nullable = false)
     private String expiryDate;
 
+    @Column
+    private String status;
+
     @ManyToOne
     @JoinColumn(name = "id_branchInventory")
     private BranchInventory branchInventory;
@@ -35,11 +38,16 @@ public class Inventory {
     public Inventory() {
     }
 
-    public Inventory(Integer totalInventory, Integer totalSales, String dateImport, String expiryDate) {
+    public Inventory(Integer totalInventory, Integer totalSales, String dateImport, String expiryDate,String status) {
         this.totalInventory = totalInventory;
         this.totalSales = totalSales;
         this.dateImport = dateImport;
         this.expiryDate = expiryDate;
+        this.status = status;
+    }
+
+    public Integer getIdInventory() {
+        return idInventory;
     }
 
     public String getExpiryDate() {
@@ -92,5 +100,13 @@ public class Inventory {
 
     public void setDateImport(String dateImport) {
         this.dateImport = dateImport;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

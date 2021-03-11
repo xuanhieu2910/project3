@@ -15,12 +15,14 @@ public class Orders {
     private Integer totalQuantity;
     @Column
     private Float totalPrice;
+    @Column
+    private String status;
 
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true,cascade = CascadeType.ALL)
     @JoinColumn(name = "ship_id")
     private Ship ship;
 
@@ -111,5 +113,13 @@ public class Orders {
 
     public void setOrderDetailsList(List<OrderDetails> orderDetailsList) {
         this.orderDetailsList = orderDetailsList;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

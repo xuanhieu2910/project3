@@ -1,7 +1,5 @@
 package xuanhieu.project3.service;
-
 import xuanhieu.project3.entity.Inventory;
-
 import java.util.List;
 
 public interface InventoryService {
@@ -16,5 +14,7 @@ public interface InventoryService {
     Inventory updateInventory(Inventory inventory);
 
 
-    List<Inventory> findInventoryByIdProduct(Integer idProduct,Integer idBranch);
+    List<Inventory> findInventoryByIdProductWithBranch(Integer idProduct,Integer idBranch);
+
+    List<Inventory>findInventoryByIdProduct(Integer idProduct);
 }

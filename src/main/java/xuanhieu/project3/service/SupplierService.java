@@ -1,6 +1,4 @@
 package xuanhieu.project3.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import xuanhieu.project3.entity.Supplier;
 import java.util.*;
 public interface SupplierService {

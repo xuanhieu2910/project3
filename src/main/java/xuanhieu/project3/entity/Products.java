@@ -1,11 +1,12 @@
 package xuanhieu.project3.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.*;
 @Entity
 @Table(name = "products")
-public class Products {
+public class Products  implements Serializable {
 
     @Id
     private Integer idProduct;
@@ -218,11 +219,11 @@ public class Products {
         return inventories;
     }
 
-    public List<ImportInventory> getImportInventory() {
-        return importInventory;
-    }
+//    public List<ImportInventory> getImportInventory() {
+//        return importInventory;
+//    }
 
-    public void setImportInventory(List<ImportInventory> importInventory) {
-        this.importInventory = importInventory;
-    }
+//    public void setImportInventory(List<ImportInventory> importInventory) {
+//        this.importInventory = importInventory;
+//    }
 }

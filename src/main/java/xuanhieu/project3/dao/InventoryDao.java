@@ -16,5 +16,7 @@ public interface InventoryDao {
     Inventory updateInventory(Inventory inventory);
 
 
-    List<Inventory> findInventoryByIdProduct(Integer idProduct,Integer idBranch);
+    List<Inventory> findInventoryByIdProductWithBranch(Integer idProduct,Integer idBranch);
+
+    List<Inventory>findIdInventoryByIdProduct(Integer idProduct);
 }

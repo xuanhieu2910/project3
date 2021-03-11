@@ -12,8 +12,11 @@ import java.util.Optional;
 @Repository
 public class InventoryDaoImpl implements InventoryDao {
 
+
+
     @Autowired
     InventoryRepository inventoryRepository;
+
 
     @Override
     public List<Inventory> findAllInventory() {
@@ -50,10 +53,12 @@ public class InventoryDaoImpl implements InventoryDao {
     }
 
     @Override
-    public List<Inventory> findInventoryByIdProduct(Integer idProduct,Integer idBranch) {
-        if(inventoryRepository.findInventoryByIdProduct(idProduct,idBranch).get(0)!=null){
-            return inventoryRepository.findInventoryByIdProduct(idProduct,idBranch);
-        }
+    public List<Inventory> findInventoryByIdProductWithBranch(Integer idProduct, Integer idBranch) {
         return null;
+    }
+
+    @Override
+    public List<Inventory> findIdInventoryByIdProduct(Integer idProduct) {
+            return inventoryRepository.findInventoriesByIdProduct(idProduct);
     }
 }

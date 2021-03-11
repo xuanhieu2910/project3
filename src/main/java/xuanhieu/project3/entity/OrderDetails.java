@@ -9,6 +9,7 @@ import java.util.*;
 public class OrderDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idOrderDetails;
     @Column(name = "quantity",nullable = false)
     private Integer quantity;

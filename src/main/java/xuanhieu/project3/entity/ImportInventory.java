@@ -18,6 +18,8 @@ public class ImportInventory {
     private Float priceImport;
     @Column(name = "date_import",nullable = false)
     private String dateImport;
+    @Column(name = "date_expiry",nullable = false)
+    private String dateExpiry;
     @Column(name = "status",nullable = false)
     private String status;
     @Column(name = "enable",nullable = false)
@@ -43,6 +45,9 @@ public class ImportInventory {
         this.enable = enable;
     }
 
+    public Integer getIdImportInventory() {
+        return idImportInventory;
+    }
     public Integer getQuantity() {
         return quantity;
     }
@@ -87,6 +92,10 @@ public class ImportInventory {
         return branchInventory;
     }
 
+    public Products getProducts() {
+        return products;
+    }
+
     public void setBranchInventory(BranchInventory branchInventory) {
         this.branchInventory = branchInventory;
     }
@@ -95,7 +104,13 @@ public class ImportInventory {
         this.products = products;
     }
 
-    public Products getProducts() {
-        return products;
+
+
+    public String getDateExpiry() {
+        return dateExpiry;
+    }
+
+    public void setDateExpiry(String dateExpiry) {
+        this.dateExpiry = dateExpiry;
     }
 }

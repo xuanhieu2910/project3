@@ -16,8 +16,9 @@ public class Ship {
 
     @OneToOne(
             mappedBy = "ship",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL
+//            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
     private Orders orders;
 
