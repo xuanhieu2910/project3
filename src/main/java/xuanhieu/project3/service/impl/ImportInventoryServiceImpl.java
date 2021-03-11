@@ -49,7 +49,6 @@ public class ImportInventoryServiceImpl implements ImportInventoryService {
 
     @Override
     public ImportInventory saveProductImportInventory(ImportInventory importInventory) {
-
         if( (productsService.findProductById(importInventory.getProducts().getIdProduct())!=null) &&
                 (branchInventoryService.findBranchInventoryById(importInventory.getBranchInventory().getIdBranchInventory())!=null)){
 
@@ -69,6 +68,7 @@ public class ImportInventoryServiceImpl implements ImportInventoryService {
             importInventory.setProducts(products);
             return importInventoryDao.saveImportInventory(importInventory);
         }
+        System.out.println("Sản phẩm chưa có trong kho!");
         return null;
     }
 
@@ -93,11 +93,4 @@ public class ImportInventoryServiceImpl implements ImportInventoryService {
         }
     }
 
-
-
-
-    @Override
-    public ImportInventory importNewProductIntoImportInventory(Products products) {
-        return null;
-    }
 }

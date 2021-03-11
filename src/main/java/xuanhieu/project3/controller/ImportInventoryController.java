@@ -24,4 +24,25 @@ public class ImportInventoryController {
     public ImportInventory importInventorySingleProduct(@RequestBody ImportInventory importInventory){
             return importInventoryService.saveProductImportInventory(importInventory);
     }
+
+    @GetMapping(value = "/import-product/{id}")
+    public ImportInventory getImportInventoryById(@PathVariable("id")Integer id){
+        return importInventoryService.findImportInventoryById(id);
+    }
+
+    @PutMapping(value = "/update-product/{id}")
+    public ImportInventory updateInventory(@PathVariable("id")Integer id,@RequestBody ImportInventory importInventory){
+        if(importInventoryService.findImportInventoryById(id)!=null){
+            importInventoryService.updateImportInventory(importInventory);
+        }
+        return null;
+    }
+    @DeleteMapping(value = "/delete/{id}")
+    public String deleteImportInventoryById(@PathVariable("id")Integer id){
+        if(importInventoryService.findImportInventoryById(id)!=null){
+            importInventoryService.deleteImportInventoryById(id);
+            return "Xóa thành công!";
+        }
+        return "Xóa thất bại!";
+    }
 }

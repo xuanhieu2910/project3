@@ -13,7 +13,4 @@ public interface ImportInventoryService {
     ImportInventory updateImportInventory(ImportInventory importInventory);
 
     String deleteImportInventoryById(Integer id);
-
-
-    ImportInventory importNewProductIntoImportInventory(Products products);
 }

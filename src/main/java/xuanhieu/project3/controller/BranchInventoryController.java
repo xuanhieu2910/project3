@@ -36,6 +36,7 @@ public class BranchInventoryController {
            return  branchInventoryService.updateBranchInventory(branchInventory);
         }
         else{
+            System.out.println("Chưa có chi nhánh!");
             return null;
         }
     }
